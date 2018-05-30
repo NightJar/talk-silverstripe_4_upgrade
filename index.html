@@ -27,14 +27,31 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section><img style="background:transparent;border:none" src="img/silverstripe-logo-only-dark.png" alt="logo for housekeeping" /></section>
 				<section>
-					<h3>Start Swimming for SilverStripe four</h1>
-					<!--h5 style="text-transform: none">Where to get started with SS4, <br />so your project <em>swims along</em> just nicely</h3>
-					<!--h5>The trick is to keep <del>breathing</del> <ins>namespacing</ins>.</h3-->
+					<img style="background:transparent;border:none" src="img/silverstripe-logo-only-dark.png" alt="logo for housekeeping" />
+					<aside class="notes">
+						I was the first speaker, so this is here as a backdrop for housekeeping notices, etc. (toilets, fire escapes, whatnot).
+					</aside>
+				</section>
+				<section>
+					<h3>Start Swimming for <br />SilverStripe four</h1>
+					<aside class="notes">
+						There's an analogy here somewhere:
+						<ul>
+							<li>smooth sailing projects</li>
+							<li>projects that swim along nicely</li>
+							<li>learn to swim before you sail</li>
+							<li>have your upgrade go <em>swimmingly</em></li>
+							<li>The trick is to keep <del>breathing</del> <ins>namespacing</ins></li>
+						</ul>
+					</aside>
 				</section>
 				<section>
 					<h1>Namespaces and you</h1>
+					<aside class="notes">
+						What this talk should actually be called<br />
+						short story/pick a path adventure name.
+					</aside>
 				</section>
 				<section>
 					<section>
@@ -52,8 +69,8 @@
 							<li><a href="http://github.com/nightjar"><img src="img/GitHub-Mark-64px.png" alt="github" class="social" />Nightjar</a></li>
 						</ul>
 						<aside class="notes">
-							Yarn about how you came across it, and why you stuck with it.<br/>
-							It's so easy it makes me look good.
+							Yarn about discovering SilverStripe, and it's still the tool of choice.<br/>
+							<em>80% provided, 20% is so easy it makes me look good.</em>
 						</aside>
 					</section>
 					<section>
@@ -128,6 +145,14 @@
 							<li>???</li>
 							<li>Profit.</li>
 						</ul>
+						<aside class="notes">
+							<ul>
+								<li>Intro</li>
+								<li>New learnings with SS4</li>
+								<li>Overview of upgrade steps</li>
+								<li>Tips for a stress free process</li>
+							</ul>
+						</aside>
 					</section>
 					<section>
 						<ul>
@@ -137,12 +162,19 @@
 							<li>???</li>
 							<li>Namespaces.</li>
 						</ul>
+						<aside class="notes">
+							What all those technical bits, tips, <em>and tricks</em> are going to be about.<br />
+							Who <em>doesn't</em> know what a namespace is? (brief laymans explanation)
+						</aside>
 					</section>
 				</section>
 				<section>
 					<h2>SS4</h2>
 					<section data-background="img/SS4-stable.png">
-						<aside class="notes">Early November last year (some 7 months ago)</aside>
+						<aside class="notes">
+							Early November last year (some 7 months ago)<br />
+							Who is already using SS4?
+						</aside>
 					</section>
 					<section>
 						<h3>What's new?</h3>
@@ -152,6 +184,10 @@
 							<li class="fragment">Abstracted Assets</li>
 							<li class="fragment">Versioning Versions via Versioned</li>
 						</ul>
+						<aside class="notes">
+							Rattle them all off, then go into detail (after all fragments are displayed)<br />
+							or not.
+						</aside>
 					</section>
 					<section>
 						<h3>Why upgrade?</h3>
@@ -161,14 +197,21 @@
 							<li class="fragment">Elemental</li>
 							<li class="fragment">Solve problems faster</li>
 						</ul>
-						<aside class="notes">Start fast, stay fast. Learn namespaces.</aside>
+						<aside class="notes">
+							<ul>
+								<li>Do it for your clients - UI win.</li>
+								<li>Do it for you, upskilling win.</li>
+								<li>Compose pages and stop reinventing the wheel</li>
+								<li>Start fast, stay fast. (And learn namespaces.)</li>
+							</ul>
+						</aside>
 					</section>
 					<section>
 						<h3>When to upgrade?</h3>
 						<p>Now.</p>
 						<aside class="notes">
-							Modules upgraded by us.<br>
-							Agencies upgrade theirs too.<br>
+							some 60ish common use modules upgraded by us.<br />
+							Agencies (e.g. Heyday, Little Giant) upgrade theirs too.<br />
 							Get amongst it.
 						</aside>
 					</section>
@@ -180,7 +223,7 @@
 						<h5>&hellip;But way, way different.</h5>
 						<aside class="notes">
 							Routing, Templates, Controller, DataObject::get, etc. all same interfaces.<br />
-							There are now a bunch of modules instead of a few - use recipes.
+							There are now a bunch of modules instead of a few - use recipes (composer json difference).
 						</aside>
 					</section>
 					<section>
@@ -193,17 +236,28 @@
 							<li><del style="opacity:0.5">Hugs</del><ins>Logging</ins></li>
 							<li><em>Simple</em> Cache</li>
 						</ul>
+						<aside class="notes">
+							What are these, why are they good?<br />
+							Better PHP ecosystem residents.
+						</aside>
 					</section>
 					<section>
 						<h3>Re-file</h3>
 						<p>vendor, resources, public, app</p>
 						<p>Learn to love the <code class="inline">vendor-expose</code></p>
-						<aside class="notes">4.2 will have app an public</aside>
+						<aside class="notes">
+							In depth resources folder concept (webroot), and how it generates (composer).<br />
+							Two methods (copy or symlink)<br />
+							Segue to next slide
+						</aside>
 					</section>
 					<section>
 						<h3>Resource lookups</h3>
 						<p>New exposure, new format</p>
 						<p><code class="inline">vendor/module: path/file.ext</code></p>
+						<aside class="notes">
+							segue from last slide. Why this new format&amp; what happens.
+						</aside>
 					</section>
 					<section>
 						<h3>Upped their game</h3>
@@ -211,6 +265,15 @@
 							<li>Emailing</li>
 							<li>File Storing</li>
 						</ul>
+						<aside class="notes">
+							<ul>
+								<li>No more Mailer class (ss1 code!)</li>
+								<li>No more modules to external smtp, etc.</li>
+								<li>No more maybe probably not CDN usage</li>
+								<li><strong>Do not assume local file storage</strong></li>
+								<li>New APIs, read up.</li>
+							</ul>
+						</aside>
 					</section>
 					<section>
 						<h3>Booting</h3>
@@ -220,8 +283,9 @@
 							<img src="img/blur-clothing-cozy-251454.jpg" alt="Socks. Because they're the middleware of boots." width="50%" />
 						</div>
 						<aside class="notes">
-							Pre &amp; Post request processors<br>
-							Also admin uses Bootstrap 4
+							Pre &amp; Post request processors<br />
+							Also admin uses Bootstrap 4<br />
+							Socks are the middleware for boots.
 						</aside>
 					</section>
 					<section>
@@ -235,7 +299,10 @@
 								<span class="fragment fade-up" data-fragment-index="1"><code class="inline">Traits</code> are in</span>
 							</span>
 						</p>
-						<aside class="notes">Traits! Configurable, Extensible</aside>
+						<aside class="notes">
+							Traits! Configurable, Extensible, Injectable!<br />
+							3 main (from Object), but also UserForm.
+						</aside>
 					</section>
 					<section data-background="img/animal-big-elephant-133394.jpg">
 						<!--
@@ -252,22 +319,35 @@
 							}
 						</style>
 						<h1 class="fragment backgrounded">Namespaces</h1>
+						<aside class="notes">
+							Why are namespaces good?<br />
+							This isn't just something we've done to make your life more complicated.<br />
+							It's easy once you've done it a few times.
+						</aside>
 					</section>
 				</section>
 				<section>
 					<h2>Upgrading</h2>
 					<section>
+						<p>What does it take?</p>
+						<aside class="notes">
+							Remember it's a growth <em>journey</em>.<br />
+							Not scary. Just awareness.<br />
+							<strong>Tips after overview</strong>
+						</aside>
+					</section>
+					<section>
 						<p>Ensure your environment.</p>
 						<aside class="notes">
-							PHP 5.6 and up.<br>
-							_intl_ extension is required.<br>
+							PHP 5.6 and up.<br />
+							_intl_ extension is required.<br />
 							environment variables. php to .env even.
 						</aside>
 					</section>
 					<section>
 						<p>Update <code class="inline">composer.json</code> and support files</p>
 						<aside class="notes">
-							Use composer. Don't not use composer.<br>
+							Use composer. Don't not use composer.<br />
 							Recipes. Public folder (4.1) or not?
 						</aside>
 					</section>
@@ -276,7 +356,7 @@
 						<p><small>(optional)</small></p>
 						<p class="fragment"><small>I recommend namespacing it.</small></p>
 						<aside class="notes">
-							Module or project? Tests. PSR-2. Namespace it. Move it. PSR-4 it. Don't forget composer.json<br>
+							Module or project? Tests. PSR-2. Namespace it. Move it. PSR-4 it. Don't forget composer.json<br />
 							<code>table_name</code>!
 						</aside>
 					</section>
@@ -285,51 +365,69 @@
 						<p>Class strings <code class="inline">UsedClassName::class</code></p>
 						<p class="fragment"><small>Namespaces, NAMESPACES EVERYWHERE</small></p>
 						<aside class="notes">
-							Every class from core will need including.<br>
-							Page (and only Page) is an exception.<br>
-							gridfield components good example
+							Every class from core will need including.<br />
+							Page (and only Page) is an exception.<br />
+							gridfield components good example - instantiated directly, and often referred to by string (getComponentsByType)
 						</aside>
 					</section>
 					<section>
 						<p>Expose static assets</p>
-						<p class="fragment"><small>A namespacing of sorts</small></p>
+						<div class="fragment">
+							<p><small>A namespacing of sorts</small></p>
+							<pre><code>Requirements::css('silverstripe/cms: client/dist/styles/bundle.css');</code></pre>
+						</div>
+<pre><code>    "extra": {
+        "expose": [
+            "client/dist",
+            "client/lang"
+        ]
+    },</code></pre>
 						<aside class="notes">
+							declared via composer.json extras.expose<br />
+							<strong>can expose directories, not just files</strong><br />
 							Don't forget to update Requirements calls in both templates and php
 						</aside>
 					</section>
 					<section>
 						<p>Alter your template files to match <span class="fragment">Namespaces</span></p>
 						<aside class="notes">
-							Layout and Includes are in the same namespace, just not the global one anymore.<br>
-							Don't forget to <em>cascade</em> your themes
+							Layout and Includes are in the same namespace, just not the global one anymore.<br />
+							Don't forget to <em>cascade</em> your themes; $public first, $default last.
 						</aside>
 					</section>
 					<section>
 						<p>Update your configuration <code class="inline">.yml</code></p>
 						<p class="fragment"><small>With Namespaces.</small></p>
 						<aside class="notes">
-							Themes cascade now. $public first, $default last.<br>
-							Namespaces. Translations too.
+							Namespaces. Translations too.<br />
+							config settings, injector beans, extension lists.
 						</aside>
 					</section>
 				</section>
 				<section>
 					<h2>A lot of work?</h2>
 					<p class="fragment">I'm glad you noticed.</p>
+					<aside class="notes">
+						Last section was about knowledge. Not doing.
+					</aside>
 				</section>
 				<section>
 					<h2>silverstripe/upgrader</h2>
 					<section>
 						<h3>Get it.</h3>
-						<pre><code>composer global require silverstripe/installer $VERSION</code></pre>
+						<pre><code>composer global require silverstripe/upgrader $VERSION</code></pre>
 						<aside class="notes">
-							Only one version. Has issues.<br>
+							Installer is an upgrader of sorts... but this is better.<br />
+							Only one version. Has issues.<br />
 							Upcoming release - many improvements!
 						</aside>
 					</section>
 					<section>
 						<h3>Environements</h3>
 						<p>Convert <code class="inline">_ss_environment.php</code> to <code class="inline">.env</code></p>
+						<pre><code>upgrade-code environment</code></pre>
+						<p>Update your composer dependencies</p>
+						<pre><code>upgrade-code recompose</code></pre>
 						<aside class="notes">
 							Warns on logic (where there shouldn't be any)
 						</aside>
@@ -337,32 +435,45 @@
 					<section>
 						<h3>Namespaces</h3>
 						<p>Generates an <code class="inline">.upgrade.yml</code></p>
+						<pre><code>upgrade-code add-namespace</code></pre>
 						<aside class="notes">
-							Critical for modules.<br>
-							Explain the point of .upgrade.yml
+							Critical for modules.<br />
+							Explain the point of .upgrade.yml<br />
+							Segue to next slide.
 						</aside>
 					</section>
 					<section>
 						<h3>Updates</h3>
 						<p><em>and</em> updates all references in your code</p>
+						<pre><code>upgrade-code upgrade</code></pre>
 						<aside class="notes">
-							This is the life-saver.
+							Segue from last slide<br />
+							This is the life-saver.<br />
+							Beware 'upgraded' string references though! (ie. Relation names that match classes)
 						</aside>
 					</section>
 					<section>
 						<h3>Inspects</h3>
 						<p>Identifying potential problems for you</p>
+						<pre><code>upgrade-code inspect</code></pre>
+						<aside class="notes">
+							Not everything can be magic. But we're working to get it as close as possible.<br />
+							Shoutout to Maxime &amp; Damian.
+						</aside>
 					</section>
 					<section>
 						<h3>Re-root</h3>
 						<p>Helps you migrate to <code class="inline">public/</code></p>
+						<pre><code>upgrade-code webroot</code></pre>
 						<aside class="notes">
-							In the case of 4.1
+							In the case of 4.1<br />
+							Moves necessary assets and stuff. Does vendor-expose too!
 						</aside>
 					</section>
 					<section>
 						<h3>Organise</h3>
 						<p>Move project from <code class="inline">mysite/</code> to <code class="inline">app/</code></p>
+						<pre><code>upgrade-code reorganise</code></pre>
 						<aside class="notes">
 							In the case of 4.2
 						</aside>
@@ -371,7 +482,7 @@
 						<h3>Sounds too good to be true!</h3>
 						<p>Well&hellip; Every software has it's trials.</p>
 						<aside class="notes">
-							1.0 has limited functionality.
+							1.0 has limited functionality.<br />
 							1.next has php7.0 dependency.
 						</aside>
 					</section>
@@ -395,6 +506,8 @@
 	"us/module": "dev-update-compatiblity as 4.1.1"
 }</code></pre>
 						<aside class="notes">
+							Upgrade modules inline, as composer dependenceies.<br />
+							Don't forget to define <code>extras.expose</code> if necessary!
 						</aside>
 					</section>
 				</section>
@@ -402,8 +515,15 @@
 					<h2>Last slide</h2>
 					<p>Thanks.</p>
 					<p class="fragment">Questions?</p>
+					<ul class="fragment">
+						<li><a href="https://docs.silverstripe.org/en/4/upgrading/">Upgrading docs</a></li>
+						<li><a href="https://docs.silverstripe.org/en/4/changelogs/4.0.0/">4.0 changelogs</a></li>
+						<li><a href="https://docs.silverstripe.org/en/4/changelogs/4.1.0/">4.1 changelogs</a></li>
+						<li><a href="https://addons.silverstripe.org/add-ons?search=&amp;type=&amp;compatibility%5B%5D=4.2&amp;compatibility%5B%5D=4.1&amp;compatibility%5B%5D=4.0&amp;sort=">Updated modules</a></li>
+					</ul>
 					<aside class="notes">
-						Resources? Changelog. Composer docs. PHP docs.
+						Resources? Changelog. Composer docs. PHP docs.<br />
+						Make a marvel movie end of credits joke with the last fragment.
 					</aside>
 				</section>
 			</div>
