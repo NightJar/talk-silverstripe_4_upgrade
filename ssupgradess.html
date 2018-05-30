@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Upgrading SilverStripe from 3 to 4.</title>
+		<meta name="description" content="An overview of various challenges one might meet while upgrading a SilverStripe 3 project to SilverStripe 4, and how to overcome them.">
+		<meta name="author" content="Dylan Wagstaff">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" href="reveal.js-3.6.0/css/reveal.css"> <!-- Make it work. -->
+		<link rel="stylesheet" href="silverstripe.css" id="theme"> <!-- SilverStripe Theme -->
+		<link rel="stylesheet" href="reveal.js-3.6.0/lib/css/zenburn.css"> <!-- Code snippit styling -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js-3.6.0/css/print/pdf.css' : 'reveal.js-3.6.0/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<!--[if lt IE 9]><script src="reveal.js-3.6.0/lib/js/html5shiv.js"></script><![endif]-->
+		<style>
+			.split{display:flex;justify-content:space-around;align-items:center}
+			code.inline{background: #3f3f3f;padding: 0px 7px;border-radius: 5px}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section><img style="background:transparent;border:none" src="img/silverstripe-logo-only-dark.png" alt="logo for housekeeping" /></section>
+				<section>
+					<h3>Start Swimming for SilverStripe four</h1>
+					<!--h5 style="text-transform: none">Where to get started with SS4, <br />so your project <em>swims along</em> just nicely</h3>
+					<!--h5>The trick is to keep <del>breathing</del> <ins>namespacing</ins>.</h3-->
+				</section>
+				<section>
+					<h1>Namespaces and you</h1>
+				</section>
+				<section>
+					<section>
+						<h2>Tena Koutou</h2>
+					</section>
+					<section>
+						<h2>Who is this guy?</h2>
+						<p>A web developer. First met Silverstripe in 2008 (v2.2), haven't really looked back much since.</p>
+						<style>
+							ul.socials li{list-style-type:none}
+							ul.socials img{vertical-align:middle;box-shadow:none;margin-right:0.5em}
+						</style>
+						<ul class="socials">
+							<li><a href="http://twitter.com/nightjarnz"><img src="img/Twitter_logo_blue.png" alt="twitter" class="social" />@NightjarNZ</a></li>
+							<li><a href="http://github.com/nightjar"><img src="img/GitHub-Mark-64px.png" alt="github" class="social" />Nightjar</a></li>
+						</ul>
+						<aside class="notes">
+							Yarn about how you came across it, and why you stuck with it.<br/>
+							It's so easy it makes me look good.
+						</aside>
+					</section>
+					<section>
+						<h2>SilverStripe Ltd.</h2>
+						<style>
+							#scene{
+								position: relative;
+								height: 300px;
+								width: 600px;
+								margin: auto;
+								transform-style: preserve-3d;
+								perspective: 150px;
+								backface-visibility: visible;
+							}
+							#scene .sky {
+								position: absolute;
+								height: 100%;
+								width: 100%;
+								/*
+									Image credit:
+									url - https://www.pexels.com/photo/photography-of-night-sky-733475/
+									author - https://www.pexels.com/@juan-230850
+								*/
+								background:url(img/astronomy-dark-nature-733475.jpg);
+								background-size: 600px 300px;
+								transform: translateZ(-100px) scale(2);
+							}
+							#scene .mothership{
+								height: 150px;
+								width: 150px;
+								margin: auto;
+								background:url(img/silverstripe-logo-only-dark.png) 50% 50% #333;
+								background-size: 150px 150px;
+								border: 3px dotted white;
+								border-radius: 150px;
+								transform: rotateX(-100deg) rotateY(5deg) translateZ(5px) skewX(10deg);
+							}
+							#scene .beam {
+								position: absolute;
+								height: 69%;
+								width: 10px;
+								left: 295px;
+								top: 85px;
+								background: linear-gradient(
+									to right, 
+									rgba(73, 231, 73, 0) 0%,
+									rgba(73, 231, 73, 0.1) 20%,
+									rgba(73, 231, 73, 1) 45%,
+									rgba(73, 231, 73, 1) 55%,
+									rgba(73, 231, 73, 0.1) 80%,
+									rgba(73, 231, 73, 0) 100%
+								);
+								position: absolute;
+							}
+						</style>
+						<div id="scene">
+							<div class="sky"></div>
+							<div class="mothership"></div>
+							<div class="beam"></div>
+						</div>
+						<p>In 2016 I joined the mothership.</p>
+						<p><small>Upgrading things has been my job for the past 8 months.</small></p>
+					</section>
+				</section>
+				<section>
+					<h2>This talk</h2>
+					<section>
+						<ul>
+							<li>SS4 overview</li>
+							<li>Technicalities</li>
+							<li>Gotchas</li>
+							<li>???</li>
+							<li>Profit.</li>
+						</ul>
+					</section>
+					<section>
+						<ul>
+							<li>Namespaces</li>
+							<li>Namespaces</li>
+							<li>Namespaces</li>
+							<li>???</li>
+							<li>Namespaces.</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<h2>SS4</h2>
+					<section data-background="img/SS4-stable.png">
+						<aside class="notes">Early November last year (some 7 months ago)</aside>
+					</section>
+					<section>
+						<h3>What's new?</h3>
+						<ul>
+							<li class="fragment">Speed</li>
+							<li class="fragment">Recipes</li>
+							<li class="fragment">Abstracted Assets</li>
+							<li class="fragment">Versioning Versions via Versioned</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Why upgrade?</h3>
+						<ul>
+							<li class="fragment">New project</li>
+							<li class="fragment">New skills</li>
+							<li class="fragment">Elemental</li>
+							<li class="fragment">Solve problems faster</li>
+						</ul>
+						<aside class="notes">Start fast, stay fast. Learn namespaces.</aside>
+					</section>
+					<section>
+						<h3>When to upgrade?</h3>
+						<p>Now.</p>
+						<aside class="notes">
+							Modules upgraded by us.<br>
+							Agencies upgrade theirs too.<br>
+							Get amongst it.
+						</aside>
+					</section>
+				</section>
+				<section>
+					<h2>Technicalities</h2>
+					<section>
+						<h3>Everything's the same</h3>
+						<h5>&hellip;But way, way different.</h5>
+						<aside class="notes">
+							Routing, Templates, Controller, DataObject::get, etc. all same interfaces.<br />
+							There are now a bunch of modules instead of a few - use recipes.
+						</aside>
+					</section>
+					<section>
+						<h3>PSR</h3>
+						<p style="word-spacing: 1.7em;font-weight:bold">1 2 4 3 16</p>
+						<ul style="font-size:0.75em">
+							<li>Coding Standard</li>
+							<li>Coding Style</li>
+							<li>Autoloading</li>
+							<li><del style="opacity:0.5">Hugs</del><ins>Logging</ins></li>
+							<li><em>Simple</em> Cache</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Re-file</h3>
+						<p>vendor, resources, public, app</p>
+						<p>Learn to love the <code class="inline">vendor-expose</code></p>
+						<aside class="notes">4.2 will have app an public</aside>
+					</section>
+					<section>
+						<h3>Resource lookups</h3>
+						<p>New exposure, new format</p>
+						<p><code class="inline">vendor/module: path/file.ext</code></p>
+					</section>
+					<section>
+						<h3>Upped their game</h3>
+						<ul>
+							<li>Emailing</li>
+							<li>File Storing</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Booting</h3>
+						<div class="split">
+							<p>Middleware</p>
+							<!-- image credit: https://www.pexels.com/photo/close-up-high-angle-view-of-camera-251454/ -->
+							<img src="img/blur-clothing-cozy-251454.jpg" alt="Socks. Because they're the middleware of boots." width="50%" />
+						</div>
+						<aside class="notes">
+							Pre &amp; Post request processors<br>
+							Also admin uses Bootstrap 4
+						</aside>
+					</section>
+					<section>
+						<style>
+							.sync-fade{position:relative}
+							.sync-fade>span+span{position:absolute;left:0;}
+						</style>
+						<p>
+							<span class="sync-fade">
+								<span class="fragment fade-out" data-fragment-index="1"><code class="inline">Object</code> is gone</span>
+								<span class="fragment fade-up" data-fragment-index="1"><code class="inline">Traits</code> are in</span>
+							</span>
+						</p>
+						<aside class="notes">Traits! Configurable, Extensible</aside>
+					</section>
+					<section data-background="img/animal-big-elephant-133394.jpg">
+						<!--
+							https://www.pexels.com/photo/animal-big-elephant-endangered-133394/
+							Anthony - https://www.pexels.com/@inspiredimages
+						-->
+						<style>
+							h1.backgrounded{
+								text-shadow:
+									10px 10px 25px black,
+									10px -10px 25px black,
+									-10px 10px 25px black,
+									-10px -10px 25px black;
+							}
+						</style>
+						<h1 class="fragment backgrounded">Namespaces</h1>
+					</section>
+				</section>
+				<section>
+					<h2>Upgrading</h2>
+					<section>
+						<p>Ensure your environment.</p>
+						<aside class="notes">
+							PHP 5.6 and up.<br>
+							_intl_ extension is required.<br>
+							environment variables. php to .env even.
+						</aside>
+					</section>
+					<section>
+						<p>Update <code class="inline">composer.json</code> and support files</p>
+						<aside class="notes">
+							Use composer. Don't not use composer.<br>
+							Recipes. Public folder (4.1) or not?
+						</aside>
+					</section>
+					<section>
+						<p>Shape up your code.</p>
+						<p><small>(optional)</small></p>
+						<p class="fragment"><small>I recommend namespacing it.</small></p>
+						<aside class="notes">
+							Module or project? Tests. PSR-2. Namespace it. Move it. PSR-4 it. Don't forget composer.json<br>
+							<code>table_name</code>!
+						</aside>
+					</section>
+					<section>
+						<p><code class="inline">use</code> your PHP dependencies</p>
+						<p>Class strings <code class="inline">UsedClassName::class</code></p>
+						<p class="fragment"><small>Namespaces, NAMESPACES EVERYWHERE</small></p>
+						<aside class="notes">
+							Every class from core will need including.<br>
+							Page (and only Page) is an exception.<br>
+							gridfield components good example
+						</aside>
+					</section>
+					<section>
+						<p>Expose static assets</p>
+						<p class="fragment"><small>A namespacing of sorts</small></p>
+						<aside class="notes">
+							Don't forget to update Requirements calls in both templates and php
+						</aside>
+					</section>
+					<section>
+						<p>Alter your template files to match <span class="fragment">Namespaces</span></p>
+						<aside class="notes">
+							Layout and Includes are in the same namespace, just not the global one anymore.<br>
+							Don't forget to <em>cascade</em> your themes
+						</aside>
+					</section>
+					<section>
+						<p>Update your configuration <code class="inline">.yml</code></p>
+						<p class="fragment"><small>With Namespaces.</small></p>
+						<aside class="notes">
+							Themes cascade now. $public first, $default last.<br>
+							Namespaces. Translations too.
+						</aside>
+					</section>
+				</section>
+				<section>
+					<h2>A lot of work?</h2>
+					<p class="fragment">I'm glad you noticed.</p>
+				</section>
+				<section>
+					<h2>silverstripe/upgrader</h2>
+					<section>
+						<h3>Get it.</h3>
+						<pre><code>composer global require silverstripe/installer $VERSION</code></pre>
+						<aside class="notes">
+							Only one version. Has issues.<br>
+							Upcoming release - many improvements!
+						</aside>
+					</section>
+					<section>
+						<h3>Environements</h3>
+						<p>Convert <code class="inline">_ss_environment.php</code> to <code class="inline">.env</code></p>
+						<aside class="notes">
+							Warns on logic (where there shouldn't be any)
+						</aside>
+					</section>
+					<section>
+						<h3>Namespaces</h3>
+						<p>Generates an <code class="inline">.upgrade.yml</code></p>
+						<aside class="notes">
+							Critical for modules.<br>
+							Explain the point of .upgrade.yml
+						</aside>
+					</section>
+					<section>
+						<h3>Updates</h3>
+						<p><em>and</em> updates all references in your code</p>
+						<aside class="notes">
+							This is the life-saver.
+						</aside>
+					</section>
+					<section>
+						<h3>Inspects</h3>
+						<p>Identifying potential problems for you</p>
+					</section>
+					<section>
+						<h3>Re-root</h3>
+						<p>Helps you migrate to <code class="inline">public/</code></p>
+						<aside class="notes">
+							In the case of 4.1
+						</aside>
+					</section>
+					<section>
+						<h3>Organise</h3>
+						<p>Move project from <code class="inline">mysite/</code> to <code class="inline">app/</code></p>
+						<aside class="notes">
+							In the case of 4.2
+						</aside>
+					</section>
+					<section>
+						<h3>Sounds too good to be true!</h3>
+						<p>Well&hellip; Every software has it's trials.</p>
+						<aside class="notes">
+							1.0 has limited functionality.
+							1.next has php7.0 dependency.
+						</aside>
+					</section>
+				</section>
+				<section>
+					<h2>Tip</h2>
+					<section>
+						<h3>Composer</h3>
+						<ul style="font-size:0.75em">
+							<li>Define fork repositories</li>
+							<li>Require development branches</li>
+							<li>Inline alias to satisfy recipies</li>
+						</ul>
+<pre><code>"repositories": [
+	{
+		"type": "vcs",
+		"url": "/path/to/fork-repo.git"
+	}
+],
+"requirements": {
+	"us/module": "dev-update-compatiblity as 4.1.1"
+}</code></pre>
+						<aside class="notes">
+						</aside>
+					</section>
+				</section>
+				<section>
+					<h2>Last slide</h2>
+					<p>Thanks.</p>
+					<p class="fragment">Questions?</p>
+					<aside class="notes">
+						Resources? Changelog. Composer docs. PHP docs.
+					</aside>
+				</section>
+			</div>
+		</div>
+		<script src="reveal.js-3.6.0/lib/js/head.min.js"></script>
+		<script src="reveal.js-3.6.0/js/reveal.js"></script>
+		<script>
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				transition: 'none',
+				dependencies: [
+					{ src: 'reveal.js-3.6.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'reveal.js-3.6.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'reveal.js-3.6.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'reveal.js-3.6.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'reveal.js-3.6.0/plugin/zoom-js/zoom.js', async: true },
+					{ src: 'reveal.js-3.6.0/plugin/notes/notes.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,77 @@
+/**
+ * Silverstripe theme for reveal.js.
+ */
+
+
+/* Extends Sky theme packaged with reveal.js */
+@import url(reveal.js-3.6.0/css/theme/sky.css);
+
+@import url(fonts/ProximaNova/webfonts/proximanova_regular_english/stylesheet.css);
+@import url(fonts/ProximaNova/webfonts/proximanova_italic_english/stylesheet.css);
+@import url(fonts/ProximaNova/webfonts/proximanova_bold_english/stylesheet.css);
+@import url(fonts/ProximaNova/webfonts/proximanova_bolditalic_english/stylesheet.css);
+/*
+ * Best open source fallback for those without a license to Proxima Nova (which is a non-free font).
+ * c.f. https://fonts.google.com/specimen/Montserrat
+ * cached locally to not rely on the internet being available.
+ * copied & paths modified from `@import url(https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i);`
+ */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Montserrat Regular'), local('Montserrat-Regular'), url("fonts/Montserrat/Montserrat-Regular.ttf") format('ttf');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Montserrat Bold'), local('Montserrat-Bold'), url("fonts/Montserrat/Montserrat-Bold.ttf") format('ttf');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Montserrat Italic'), local('Montserrat-Italic'), url("fonts/Montserrat/Montserrat-Italic.ttf") format('ttf');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Montserrat Bold Italic'), local('Montserrat-BoldItalic'), url("fonts/Montserrat/Montserrat-BoldItalic.ttf") format('ttf');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+body {
+  background: url(img/silverstripe-logo-horizontal-light.png) left bottom no-repeat #142237;
+  background-size: 20%;
+}
+
+.reveal {
+  font-family: "Proxima Nova", "Montserrat", sans-serif;
+  color: #BABFC6; }
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  color: #fff;
+  font-family: "Proxima Nova", "Montserrat", sans-serif; }
+
+.reveal h,
+.reveal h3,
+.reveal h4 {
+  color: #42A8D9; }
+
+.reveal blockquote {
+  border-left: 10px solid #3b759e;
+  background: rgba(255, 255, 255, 0.15); }
+
+.reveal section img {
+  background: rgba(255, 255, 255, 1);
+  border: 4px solid #fff; }
